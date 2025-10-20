@@ -1,9 +1,10 @@
 import { Component, Input, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AvailabilityPipe } from '../../pipes/availability.pipe';
 
 @Component({
   selector: 'app-product-detail',
-  imports: [ CommonModule ],
+  imports: [ CommonModule, AvailabilityPipe ],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
 })
