@@ -1,23 +1,37 @@
 <div class="card product-detail">
-    <div class="card-body">
-        <h3 class="card-title d-flex justify-content-between align-itens-center">
-            {{ product.name | uppercase}} 
-            <span class="badge bg-danger">{{ product.onSale | onSale }}</span>
-        </h3>
-        <p class="card-text">{{ product.description }}</p>
-        @if (product.onSale) {
-            <p class="card-text price-container">
-                <strong class="original-price">{{ product.price | currency:'BRL' }}</strong>
-                <strong class="discounted-price">{{ discountedPrice | currency:'BRL' }}</strong>
-            </p>
-        } @else {
-            <p class="card-text">Preço: <strong>{{ product.price | currency:'BRL' }}</strong></p>
-        }
-        <p class="card-text">
-            <small class="text-muted">Data de lançamento: {{ product.launchDate | date: 'dd/MM/yyyy' }}</small>
-        </p>
-        <p class="card-text">
-            <small class="text-muted">Status: {{ product.available | availability}}</small>
-        </p>
-    </div>
+    <div class="row g-0">
+        <div class="col-md-5">
+            <img
+                [src]="product.imgUrl"
+                class="img-fluid rounded-start"
+                [alt]="product.name"
+                [class.zoomed]="isZoomed"
+                (mouseenter)="isZoomed = true"
+                (mouseleave)="isZoomed = false"
+            />
+        </div>
+        <div class="col-md-7">
+            <div class="card-body">
+                <h3 class="card-title d-flex justify-content-between align-itens-center">
+                    {{ product.name | uppercase}} 
+                    <span class="badge bg-danger">{{ product.onSale | onSale }}</span>
+                </h3>
+                <p class="card-text">{{ product.description }}</p>
+                @if (product.onSale) {
+                    <p class="card-text price-container">
+                        <strong class="original-price">{{ product.price | currency:'BRL' }}</strong>
+                        <strong class="discounted-price">{{ discountedPrice | currency:'BRL' }}</strong>
+                    </p>
+                } @else {
+                    <p class="card-text">Preço: <strong>{{ product.price | currency:'BRL' }}</strong></p>
+                }
+                <p class="card-text">
+                    <small class="text-muted">Data de lançamento: {{ product.launchDate | date: 'dd/MM/yyyy' }}</small>
+                </p>
+                <p class="card-text">
+                    <small class="text-muted">Status: {{ product.available | availability}}</small>
+                </p>
+            </div>
+        </div>
+    </div> 
 </div>
