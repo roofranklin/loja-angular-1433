@@ -1,12 +1,23 @@
-<div>
-    <h3>{{ product.name | uppercase}} <span style="color: red;">{{ product.onSale | onSale }}</span></h3>
-    <p>{{ product.description }}</p>
-    @if (product.onSale) {
-        <strong style="text-decoration: line-through;">{{ product.price | currency:'BRL' }}</strong>
-        <strong style="color: green; margin-left: 10px;">{{ discountedPrice | currency:'BRL' }}</strong>
-    } @else {
-        <p>Preço: {{ product.price | currency:'BRL' }}</p>
-    }
-    <p>Data de lançamento: {{ product.launchDate | date: 'dd/MM/yyyy' }}</p>
-    <p>Status: {{ product.available | availability}}</p>
+<div class="card product-detail">
+    <div class="card-body">
+        <h3 class="card-title d-flex justify-content-between align-itens-center">
+            {{ product.name | uppercase}} 
+            <span class="badge bg-danger">{{ product.onSale | onSale }}</span>
+        </h3>
+        <p class="card-text">{{ product.description }}</p>
+        @if (product.onSale) {
+            <p class="card-text price-container">
+                <strong class="original-price">{{ product.price | currency:'BRL' }}</strong>
+                <strong class="discounted-price">{{ discountedPrice | currency:'BRL' }}</strong>
+            </p>
+        } @else {
+            <p class="card-text">Preço: <strong>{{ product.price | currency:'BRL' }}</strong></p>
+        }
+        <p class="card-text">
+            <small class="text-muted">Data de lançamento: {{ product.launchDate | date: 'dd/MM/yyyy' }}</small>
+        </p>
+        <p class="card-text">
+            <small class="text-muted">Status: {{ product.available | availability}}</small>
+        </p>
+    </div>
 </div>
