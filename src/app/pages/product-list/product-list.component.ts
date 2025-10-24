@@ -1,26 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
-import { ProductDetailComponent } from '../product-detail/product-detail.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-product-list',
-  imports: [CommonModule, ProductDetailComponent],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
 export class ProductListComponent implements OnInit {
   products: any[] = [];
-  selectedProduct: any;
 
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.products = this.productService.getProducts();
+    this.productService.getProducts().subscribe(data => {
+      this.products = data;
+    });
   }
-
-  selectProduct(product: any): void {
-    this.selectedProduct = product;
-  }
-
 }
