@@ -3,6 +3,7 @@ import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from "@angular/router";
 import { CategoryListComponent } from '../../components/category-list/category-list.component';
+import { Product } from '../../types';
 
 @Component({
   selector: 'app-product-list',
@@ -12,7 +13,7 @@ import { CategoryListComponent } from '../../components/category-list/category-l
   styleUrl: './product-list.component.css'
 })
 export class ProductListComponent implements OnInit {
-  products: any[] = [];
+  products: Product[] = [];
 
   constructor(private productService: ProductService) {}
 
