@@ -23,8 +23,10 @@ export class ProductDetailComponent implements OnInit {
   ) {}
 
   addToCart() {
-    this.store.dispatch(CartActions.addProductToCart({ product: this.product }));
-    console.log('Produto adicionado ao carrinho!');
+    if (this.product) {
+      this.store.dispatch(CartActions.addProductToCart({ product: this.product }));
+      console.log('Produto adicionado ao carrinho!');
+    }
   }
 
   ngOnInit(): void {
