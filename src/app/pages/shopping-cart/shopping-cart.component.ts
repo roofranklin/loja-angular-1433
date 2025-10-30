@@ -5,10 +5,11 @@ import { CommonModule } from '@angular/common';
 import * as CartActions from '../../store/cart.actions';
 import { CartItem } from '../../types';
 import { CartState } from '../../store/cart.state';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-shopping-cart',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './shopping-cart.component.html',
   styleUrl: './shopping-cart.component.css'
 })

@@ -1,0 +1,39 @@
+<h2>Checkout</h2>
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label for="name" class="form-label">Nome:</label>
+        <input type="text" id="name" formControlName="name" class="form-control" />
+        @if (checkoutForm.get('name')?.invalid && checkoutForm.get('name')?.touched){
+            <div class="text-danger">O nome é obrigatório</div>
+        }
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">E-mail:</label>
+        <input type="email" id="email" formControlName="email" class="form-control" />
+        @if (checkoutForm.get('email')?.invalid && checkoutForm.get('email')?.touched) {
+            <div class="text-danger">
+                @if (checkoutForm.get('email')?.errors?.['required']) {
+                    <div>O e-mail é obrigatório.</div>
+                }
+                @if (checkoutForm.get('email')?.errors?.['email']){
+                    <div>Formato de e-mail inválido.</div>
+                }
+            </div>
+        }
+    </div>
+    <div class="mb-3">
+        <label for="phone" class="form-label">Telefone:</label>
+        <input type="tel" id="phone" formControlName="phone" class="form-control" />
+        @if (checkoutForm.get('phone')?.invalid && checkoutForm.get('phone')?.touched){
+            <div class="text-danger">O telefone é obrigatório</div>
+        }
+    </div>
+    <div class="mb-3">
+        <label for="address" class="form-label">Endereço:</label>
+        <input type="text" id="address" formControlName="address" class="form-control" />
+        @if (checkoutForm.get('address')?.invalid && checkoutForm.get('address')?.touched){
+            <div class="text-danger">O endereço é obrigatório</div>
+        }
+    </div>
+    <button type="submit" [disabled]="checkoutForm.invalid" class="btn btn-primary">Finalizar compra</button>
+</form>
