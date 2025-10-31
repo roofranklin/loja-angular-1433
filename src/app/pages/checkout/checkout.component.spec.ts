@@ -58,6 +58,42 @@ describe('CheckoutComponent', () => {
     expect(control?.valid).toBeFalsy();
   });
 
+  it('should make the card number control', () => {
+    const control = component.checkoutForm.get('cardNumber');
+    control?.setValue('');
+    expect(control?.valid).toBeFalsy();
+
+    control?.setValue('123456789012345'); // menos de 16
+    expect(control?.valid).toBeFalsy();
+
+    control?.setValue('123456789012345678'); // mais de 16
+    expect(control?.valid).toBeFalsy();
+
+    control?.setValue('123456789012345a'); // não numerico
+    expect(control?.valid).toBeFalsy();
+
+    control?.setValue('1234567890123456'); // válido
+    expect(control?.valid).toBeTruthy();
+  });
+
+  it('should make the security number control', () => {
+    const control = component.checkoutForm.get('securityCode');
+    control?.setValue('');
+    expect(control?.valid).toBeFalsy();
+
+    control?.setValue('12'); // menos de 03
+    expect(control?.valid).toBeFalsy();
+
+    control?.setValue('1234'); // mais de 03
+    expect(control?.valid).toBeFalsy();
+
+    control?.setValue('12a'); // não numerico
+    expect(control?.valid).toBeFalsy();
+
+    control?.setValue('123'); // válido
+    expect(control?.valid).toBeTruthy();
+  });
+
   it('should disable the submit button if the form is invalid', () => {
     const compiled = fixture.nativeElement;
     const submitButton = compiled.querySelector('button[type="submit"]');
@@ -69,6 +105,9 @@ describe('CheckoutComponent', () => {
     component.checkoutForm.get('email')?.setValue('fulano@teste.com');
     component.checkoutForm.get('phone')?.setValue('5555 - 1234');
     component.checkoutForm.get('address')?.setValue('Av. Brasil 123');
+    component.checkoutForm.get('cardNumber')?.setValue('1234567890123456');
+    component.checkoutForm.get('expiryDate')?.setValue('12/25');
+    component.checkoutForm.get('securityCode')?.setValue('123');
     fixture.detectChanges();
 
     const compiled = fixture.nativeElement;
